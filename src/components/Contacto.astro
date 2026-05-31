@@ -143,18 +143,23 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
       body: formData,
     }).catch(() => {});
 
-    // 2. Abrir WhatsApp con los datos
+    // 2. Mostrar confirmación primero, luego abrir WhatsApp
     let texto =
       `Hola Roxana! Te escribo desde la web de Taller Menta Florall 🌿\n\n` +
       `*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Me interesa:* ${interes}\n*Personas:* ${personas}\n*Fecha tentativa:* ${fecha}`;
     if (mensaje) texto += `\n*Mensaje:* ${mensaje}`;
 
-    window.open(`https://wa.me/${waNumero}?text=${encodeURIComponent(texto)}`, '_blank');
     document.getElementById('form-success')?.classList.add('show');
     btn.innerHTML = 'Enviar mensaje <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
     btn.disabled = false;
     form.reset();
     document.querySelector('#interest-chips .chip[data-val="madera"]')?.classList.add('selected');
-    setTimeout(() => document.getElementById('form-success')?.classList.remove('show'), 5000);
+
+    // Abrir WhatsApp después de 2 segundos para que vean el mensaje
+    setTimeout(() => {
+      window.open(`https://wa.me/${waNumero}?text=${encodeURIComponent(texto)}`, '_blank');
+    }, 2000);
+
+    setTimeout(() => document.getElementById('form-success')?.classList.remove('show'), 8000);
   });
 </script>
