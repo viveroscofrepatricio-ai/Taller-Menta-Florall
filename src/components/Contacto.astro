@@ -127,7 +127,7 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
     btn.innerHTML = 'Enviando...';
 
     // 1. Guardar en Google Sheets via Apps Script
-    await fetch('https://script.google.com/macros/s/AKfycby6NgXyxNjY9EvucEUELRpoJheXzMaVwHQZv4YW0gVU7FUsalV2ygWYWAp8vt8aFj4v4A/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbxOa00aDtqFzeEMx8MmDIZdgFIJIvb_GzJ8xvgpcTH8JKvFyYFrz4qYYr2KUdLpYrZHnQ/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, telefono, interes, personas, fecha, mensaje }),
