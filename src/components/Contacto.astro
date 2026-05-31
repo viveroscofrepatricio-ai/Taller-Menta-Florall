@@ -109,7 +109,7 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
     });
   });
 
-  document.getElementById('booking-form')?.addEventListener('submit', (e) => {
+  document.getElementById('booking-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const btn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -123,22 +123,28 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
     const chip     = document.querySelector('#interest-chips .chip.selected');
     const interes  = chip ? chip.textContent?.trim() : '(no seleccionado)';
 
+    btn.disabled = true;
+    btn.innerHTML = 'Enviando...';
+
+    // 1. Guardar en Google Sheets via Formspree
+    await fetch('https://formspree.io/f/mvzyjork', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nombre, telefono, interes, personas, fecha, mensaje }),
+    }).catch(() => {}); // si falla no interrumpe el flujo
+
+    // 2. Abrir WhatsApp con los datos
     let texto =
       `Hola Roxana! Te escribo desde la web de Taller Menta Florall 🌿\n\n` +
       `*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Me interesa:* ${interes}\n*Personas:* ${personas}\n*Fecha tentativa:* ${fecha}`;
     if (mensaje) texto += `\n*Mensaje:* ${mensaje}`;
 
-    btn.disabled = true;
-    btn.innerHTML = 'Abriendo WhatsApp...';
-
-    setTimeout(() => {
-      window.open(`https://wa.me/${waNumero}?text=${encodeURIComponent(texto)}`, '_blank');
-      document.getElementById('form-success')?.classList.add('show');
-      btn.innerHTML = 'Enviar mensaje <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-      btn.disabled = false;
-      form.reset();
-      document.querySelector('#interest-chips .chip[data-val="madera"]')?.classList.add('selected');
-      setTimeout(() => document.getElementById('form-success')?.classList.remove('show'), 5000);
-    }, 400);
+    window.open(`https://wa.me/${waNumero}?text=${encodeURIComponent(texto)}`, '_blank');
+    document.getElementById('form-success')?.classList.add('show');
+    btn.innerHTML = 'Enviar mensaje <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    btn.disabled = false;
+    form.reset();
+    document.querySelector('#interest-chips .chip[data-val="madera"]')?.classList.add('selected');
+    setTimeout(() => document.getElementById('form-success')?.classList.remove('show'), 5000);
   });
 </script>
