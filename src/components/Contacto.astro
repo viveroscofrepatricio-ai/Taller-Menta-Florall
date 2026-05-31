@@ -126,10 +126,10 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
     btn.disabled = true;
     btn.innerHTML = 'Enviando...';
 
-    // 1. Guardar en Google Sheets via Formspree
-    await fetch('https://formspree.io/f/mvzyjork', {
+    // 1. Guardar en Google Sheets via Apps Script
+    await fetch('https://script.google.com/macros/s/AKfycby6NgXyxNjY9EvucEUELRpoJheXzMaVwHQZv4YW0gVU7FUsalV2ygWYWAp8vt8aFj4v4A/exec', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, telefono, interes, personas, fecha, mensaje }),
     }).catch(() => {}); // si falla no interrumpe el flujo
 
