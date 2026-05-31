@@ -126,12 +126,19 @@ const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
     btn.disabled = true;
     btn.innerHTML = 'Enviando...';
 
-    // 1. Guardar en Google Sheets via Apps Script
-    await fetch('https://script.google.com/macros/s/AKfycbxOa00aDtqFzeEMx8MmDIZdgFIJIvb_GzJ8xvgpcTH8JKvFyYFrz4qYYr2KUdLpYrZHnQ/exec', {
+    // 1. Guardar en Google Sheets via Apps Script (no-cors para evitar bloqueo)
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('telefono', telefono);
+    formData.append('interes', interes || '');
+    formData.append('personas', personas);
+    formData.append('fecha', fecha);
+    formData.append('mensaje', mensaje);
+    fetch('https://script.google.com/macros/s/AKfycbyqZ0f3iwkIC8s96ZmSZPkGC0ftynBnd1kdkKUYYIMkSJ9CLMh-GgC7iVK8RZn3iCI2Lg/exec', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, telefono, interes, personas, fecha, mensaje }),
-    }).catch(() => {}); // si falla no interrumpe el flujo
+      mode: 'no-cors',
+      body: formData,
+    }).catch(() {});
 
     // 2. Abrir WhatsApp con los datos
     let texto =
