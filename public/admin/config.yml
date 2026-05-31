@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Permite usar el CMS en local sin autenticación de GitHub
+local_backend: true
+
+media_folder: public/assets
+public_folder: /assets
+
+collections:
+  # ── RESEÑAS DE ALUMNAS ─────────────────────────────────────────
+  - name: testimonios
+    label: "Reseñas de alumnas"
+    label_singular: "Reseña"
+    description: "Agregá, editá o quitá reseñas. Se muestran en la sección verde del sitio."
+    files:
+      - name: lista
+        label: "Lista de reseñas"
+        file: src/data/testimonios.json
+        fields:
+          - name: "body"
+            label: "Reseñas"
+            widget: list
+            label_singular: "Reseña"
+            fields:
+              - { name: nombre, label: "Nombre de la alumna", widget: string }
+              - { name: rol, label: "Descripción (ej: Taller de pintura · mayo)", widget: string }
+              - { name: reseña, label: "Texto de la reseña", widget: text }
+
+  # ── TEXTOS DEL SITIO ───────────────────────────────────────────
+  - name: sitio
+    label: "Textos del sitio"
+    files:
+      - name: hero
+        label: "Sección principal (Hero)"
+        file: src/data/sitio.json
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Texto pequeño arriba del título", widget: string }
+              - { name: tag, label: "Subtítulo en terracota", widget: string }
+              - { name: cuerpo, label: "Párrafo descriptivo", widget: text }
+              - { name: alumnas, label: "Número de alumnas", widget: string }
+              - { name: talleres, label: "Número de talleres dictados", widget: string }
+          - name: sobre
+            label: "Sobre el taller"
+            widget: object
+            fields:
+              - { name: titulo, label: "Título de la sección", widget: string }
+              - { name: subtitulo, label: "Subtítulo", widget: string }
+              - { name: lead, label: "Párrafo destacado (grande)", widget: text }
+              - { name: parrafo1, label: "Párrafo 1", widget: text }
+              - { name: parrafo2, label: "Párrafo 2", widget: text }
+              - { name: firma, label: "Firma (nombre)", widget: string }
+              - { name: firma_sub, label: "Firma subtítulo", widget: string }
+          - name: contacto
+            label: "Datos de contacto"
+            widget: object
+            fields:
+              - { name: whatsapp, label: "Número WhatsApp", widget: string }
+              - { name: instagram, label: "Instagram (con @)", widget: string }
+              - { name: ubicacion, label: "Ubicación", widget: string }
+              - { name: horarios, label: "Horarios", widget: string }

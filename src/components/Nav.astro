@@ -1,0 +1,21 @@
+---
+---
+<nav class="topnav" id="topnav">
+  <div class="brand">
+    <div class="brand-mark serif">TMF</div>
+    <div>Taller Menta<br/>Florall</div>
+  </div>
+  <div class="nav-links">
+    <a href="#contacto">Contacto</a>
+    <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+      Reserva tu cupo
+    </button>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('topnav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 30);
+  });
+</script>

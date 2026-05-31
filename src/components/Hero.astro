@@ -1,0 +1,42 @@
+---
+import sitio from '../data/sitio.json';
+const { hero } = sitio;
+---
+<header class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">{hero.eyebrow}</div>
+    <h1 class="hero-title">
+      Taller<br/>Menta<br/>Florall
+      <svg class="leaf-accent leaf-svg" width="80" height="40" viewBox="0 0 80 40" fill="none">
+        <path d="M2 30 C 20 10, 50 8, 78 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <ellipse cx="18" cy="22" rx="8" ry="3.5" transform="rotate(-25 18 22)" fill="currentColor" opacity="0.7"/>
+        <ellipse cx="34" cy="16" rx="9" ry="4" transform="rotate(-15 34 16)" fill="currentColor" opacity="0.85"/>
+        <ellipse cx="52" cy="13" rx="9" ry="4" transform="rotate(-8 52 13)" fill="currentColor"/>
+        <ellipse cx="68" cy="12" rx="7" ry="3.2" transform="rotate(-4 68 12)" fill="currentColor" opacity="0.7"/>
+      </svg>
+    </h1>
+    <div class="hero-tag">{hero.tag}</div>
+    <p class="hero-body">{hero.cuerpo}</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+        Reserva tu cupo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="hero-meta">
+      <div class="item"><span class="num">{hero.alumnas}</span><span class="lbl">Alumnas</span></div>
+      <div class="item"><span class="num">{hero.talleres}</span><span class="lbl">Talleres dictados</span></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card"></div>
+    <div class="hero-tag-card top">
+      <div class="dot"></div>
+      <div>
+        <div class="label">Pintura decorativa</div>
+        <div class="sub">Hecho a mano</div>
+      </div>
+    </div>
+  </div>
+</header>

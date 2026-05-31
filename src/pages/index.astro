@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Sobre from '../components/Sobre.astro';
+import Testimonios from '../components/Testimonios.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Menta Florall — Pintura decorativa en madera y resina · San Pedro de la Paz</title>
+  <meta name="description" content="Taller artesanal de pintura decorativa en madera y resina en San Pedro de la Paz, Chile. Dirigido por Roxana Campos. Reservá tu cupo para el próximo taller." />
+
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://taller-menta-florall.github.io/" />
+  <meta property="og:title" content="Taller Menta Florall — Pintura decorativa artesanal" />
+  <meta property="og:description" content="Taller artesanal de pintura en madera y resina en San Pedro de la Paz. Aprendé a crear piezas únicas con Roxana Campos. ¡Reservá tu cupo!" />
+  <meta property="og:image" content="/assets/portada-ilustracion.png" />
+  <meta property="og:locale" content="es_CL" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Taller Menta Florall — Pintura decorativa artesanal" />
+  <meta name="twitter:description" content="Taller artesanal de pintura en madera y resina en San Pedro de la Paz. Aprendé a crear piezas únicas con Roxana Campos. ¡Reservá tu cupo!" />
+  <meta name="twitter:image" content="/assets/portada-ilustracion.png" />
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <Nav />
+  <Hero />
+  <Marquee />
+  <Sobre />
+  <Testimonios />
+  <Contacto />
+  <Footer />
+
+  <!-- Botón flotante WhatsApp -->
+  <a class="wa-float" href="https://wa.me/56992430591?text=Hola!%20Quiero%20información%20sobre%20los%20talleres%20🌿" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.773L0 32l8.437-2.01A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.287 22.287c-.344.969-1.694 1.775-2.781 2.006-.744.16-1.713.287-4.975-1.069-4.175-1.719-6.869-5.963-7.081-6.238-.206-.275-1.688-2.244-1.688-4.281 0-2.038 1.063-3.038 1.438-3.425.344-.356.75-.444 1-.444.25 0 .5.002.719.013.231.012.544-.088.85.65.319.756 1.081 2.619 1.175 2.806.094.188.156.406.031.656-.125.25-.188.406-.375.625-.188.219-.394.488-.563.656-.188.188-.381.394-.163.769.219.375.969 1.594 2.081 2.581 1.431 1.275 2.638 1.669 3.013 1.856.375.188.594.156.813-.094.219-.25.938-1.094 1.188-1.469.25-.375.5-.313.844-.188.344.125 2.188 1.031 2.563 1.219.375.188.625.281.719.438.094.156.094.9-.25 1.869z"/>
+    </svg>
+  </a>
+
+</body>
+</html>

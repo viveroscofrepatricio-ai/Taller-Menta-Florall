@@ -1,0 +1,24 @@
+{
+  "sobre": {
+    "titulo": "Una marca que celebra lo hecho a mano.",
+    "subtitulo": "Cada pieza, cada pincelada y cada taller están pensados para inspirar tu creatividad.",
+    "lead": "Nací entre tarros de pintura y madera al sol. Lo que era un hobby se convirtió en taller, y el taller — en una comunidad.",
+    "parrafo1": "Desde 2022 abro las puertas de mi estudio en San Pedro de la Paz para enseñar pintura decorativa en madera, resina y los pequeños oficios que transforman un objeto cualquiera en algo entrañable.",
+    "parrafo2": "Trabajo de forma personalizada para que cada alumna se vaya con su obra terminada, materiales incluidos y la confianza de seguir creando en casa.",
+    "firma": "Roxana Campos",
+    "firma_sub": "Artesana y profesora · est. 2022"
+  },
+  "hero": {
+    "eyebrow": "San Pedro de la Paz · Chile",
+    "tag": "Arte que transforma tu hogar.",
+    "cuerpo": "Pintura decorativa en madera, resina y oficios de la decoración artesanal. Talleres personalizados en San Pedro de la Paz para crear con las manos y volver a casa con algo único.",
+    "alumnas": "50",
+    "talleres": "25"
+  },
+  "contacto": {
+    "whatsapp": "+56 9 9243 0591",
+    "instagram": "@taller_menta_florall",
+    "ubicacion": "San Pedro de la Paz, Chile",
+    "horarios": "Lun a vie · a conversar"
+  }
+}

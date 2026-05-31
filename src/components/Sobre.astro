@@ -1,0 +1,27 @@
+---
+import sitio from '../data/sitio.json';
+const { sobre } = sitio;
+---
+<section id="sobre">
+  <div class="section-head">
+    <div class="section-eyebrow">Sobre el taller</div>
+    <h2 class="section-title" set:html={sobre.titulo.replace('lo hecho a mano', '<em>lo hecho a mano.</em>').replace('.', '')}></h2>
+    <div class="section-aside">{sobre.subtitulo}</div>
+  </div>
+  <div class="about-wrap">
+    <div style="position: relative;">
+      <div class="about-img"></div>
+      <div class="about-img-tag">
+        <div class="script">Hola, soy<br/>Roxana ✿</div>
+        <div class="sub">Fundadora</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="lead">{sobre.lead}</p>
+      <p>{sobre.parrafo1}</p>
+      <p>{sobre.parrafo2}</p>
+      <div class="signature">{sobre.firma}</div>
+      <div class="signature-sub">{sobre.firma_sub}</div>
+    </div>
+  </div>
+</section>

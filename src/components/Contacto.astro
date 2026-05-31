@@ -1,0 +1,144 @@
+---
+import sitio from '../data/sitio.json';
+const { contacto } = sitio;
+const waNumero = contacto.whatsapp.replace(/\s|\+/g, '');
+---
+<section id="contacto">
+  <div class="section-head">
+    <div class="section-eyebrow">Reserva tu cupo</div>
+    <h2 class="section-title">Te esperamos<br/>en el <em>taller.</em></h2>
+    <div class="section-aside">Dejanos tu mensaje y te respondemos en menos de 24 horas.</div>
+  </div>
+  <div class="booking-wrap">
+    <div class="booking-text">
+      <p class="lead">Si estás buscando un regalo distinto, un plan diferente, o simplemente un rato para ti — escríbenos.</p>
+      <div class="booking-contact">
+        <div class="row">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div><strong>WhatsApp</strong>{contacto.whatsapp}</div>
+        </div>
+        <div class="row">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+          </div>
+          <div><strong>Instagram</strong>{contacto.instagram}</div>
+        </div>
+        <div class="row">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><strong>Estudio</strong>{contacto.ubicacion}</div>
+        </div>
+        <div class="row">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <div><strong>Horarios</strong>{contacto.horarios}</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="booking-form" id="booking-form" data-wa={waNumero}>
+      <h3>Reserva tu cupo</h3>
+      <div class="form-sub">Cuéntanos qué taller te interesa y para cuántas personas.</div>
+
+      <div class="field">
+        <label>Me interesa</label>
+        <div class="chips" id="interest-chips">
+          <button type="button" class="chip selected" data-val="madera">Pintura en madera</button>
+          <button type="button" class="chip" data-val="resina">Resina decorativa</button>
+          <button type="button" class="chip" data-val="taller">Taller creativo</button>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Tu nombre</label>
+          <input type="text" id="f-nombre" placeholder="Camila Riquelme" required />
+        </div>
+        <div class="field">
+          <label>Teléfono</label>
+          <input type="tel" id="f-telefono" placeholder="+56 9 ..." required />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Personas</label>
+          <select id="f-personas">
+            <option>1 persona</option>
+            <option>2 personas</option>
+            <option>3 a 4 personas</option>
+            <option>5+ personas</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Fecha tentativa</label>
+          <input type="text" id="f-fecha" placeholder="Junio 2026" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Mensaje (opcional)</label>
+        <textarea id="f-mensaje" placeholder="Cuéntame qué te gustaría hacer y si tienes alguna duda."></textarea>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+        ¡Abriendo WhatsApp! Si no se abre, escribinos directo.
+      </div>
+
+      <div class="form-actions">
+        <span class="hint">No spam, solo respuestas reales.</span>
+        <button type="submit" class="submit-btn" id="submit-btn">
+          Enviar mensaje
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('#interest-chips .chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#interest-chips .chip').forEach(x => x.classList.remove('selected'));
+      c.classList.add('selected');
+    });
+  });
+
+  document.getElementById('booking-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const waNumero = form.dataset.wa;
+
+    const nombre   = (document.getElementById('f-nombre') as HTMLInputElement).value.trim() || '(no indicado)';
+    const telefono = (document.getElementById('f-telefono') as HTMLInputElement).value.trim() || '(no indicado)';
+    const personas = (document.getElementById('f-personas') as HTMLSelectElement).value;
+    const fecha    = (document.getElementById('f-fecha') as HTMLInputElement).value.trim() || '(no indicada)';
+    const mensaje  = (document.getElementById('f-mensaje') as HTMLTextAreaElement).value.trim();
+    const chip     = document.querySelector('#interest-chips .chip.selected');
+    const interes  = chip ? chip.textContent?.trim() : '(no seleccionado)';
+
+    let texto =
+      `Hola Roxana! Te escribo desde la web de Taller Menta Florall 🌿\n\n` +
+      `*Nombre:* ${nombre}\n*Teléfono:* ${telefono}\n*Me interesa:* ${interes}\n*Personas:* ${personas}\n*Fecha tentativa:* ${fecha}`;
+    if (mensaje) texto += `\n*Mensaje:* ${mensaje}`;
+
+    btn.disabled = true;
+    btn.innerHTML = 'Abriendo WhatsApp...';
+
+    setTimeout(() => {
+      window.open(`https://wa.me/${waNumero}?text=${encodeURIComponent(texto)}`, '_blank');
+      document.getElementById('form-success')?.classList.add('show');
+      btn.innerHTML = 'Enviar mensaje <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.disabled = false;
+      form.reset();
+      document.querySelector('#interest-chips .chip[data-val="madera"]')?.classList.add('selected');
+      setTimeout(() => document.getElementById('form-success')?.classList.remove('show'), 5000);
+    }, 400);
+  });
+</script>
